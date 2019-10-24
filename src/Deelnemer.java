@@ -1,6 +1,6 @@
 import java.util.List;
 
-public abstract class Deelnemers {
+public abstract class Deelnemer {
     private List<Kaart> getrokkenKaarten;
 
 

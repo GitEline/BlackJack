@@ -1,4 +1,4 @@
-public class Speler extends Deelnemers {
+public class Speler extends Deelnemer {
 
 
     @Override
