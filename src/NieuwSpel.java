@@ -3,79 +3,98 @@ import java.util.List;
 import java.util.Scanner;
 
 public class NieuwSpel {
-
-
-
+    
     public static void zetNieuwSpelOp(){
+        // vraag hoeveel spelers en loop door nieuw speler voor elke nieuwe speler
+        // vraag met hoeveel decks er gespeeld moet worden en maak meerdere decks aan
+
+//        boolean deckInvoerGedaan = false;
+//        int aantalDecksInt = 0;
+//        do {
+//            boolean deckInvoerIncorrect = true;
+//            String aantalDecks = null;
+//            do {
+//            System.out.println("Met hoeveel decks wil je spelen? [max. 4]");
+//            Scanner scanner = new Scanner(System.in);                // maak een nieuwe scanner
+//            aantalDecks = scanner.nextLine();
+//                try {
+//                    Integer.parseInt(aantalDecks);
+//                    deckInvoerIncorrect = false;
+//                } catch (Exception e) {
+//                    System.out.println("Onjuiste input, vul een getal in voor het aantal decks");
+//                }
+//            } while (deckInvoerIncorrect);
+//
+//            if (Integer.parseInt(aantalDecks) > 4) {
+//                System.out.println("Er kunnen maximaal 4 decks gebruikt worden");
+//            } else if(Integer.parseInt(aantalDecks) < 1){
+//                System.out.println("Er moet minimaal 1 deck gebruikt worden");
+//            }else {
+//                aantalDecksInt = Integer.parseInt(aantalDecks);
+//                System.out.println(aantalDecksInt);
+//                deckInvoerGedaan = true;
+//            }
+//        }while(!deckInvoerGedaan);
+//
+//        List<Kaart> kaartenInSpel = null;         //deze variabele koppelen aan de loop hieronder
+//
+//        for (int i = 0; i < aantalDecksInt; i++){ // deze loop werkt nog niet
+//            kaartenInSpel = Deck.maakDeck();
+//        }
+//        System.out.println(kaartenInSpel);
+        //kaart voor bank tonen
+
+
         List<Kaart> kaartenInSpel = Deck.maakDeck();                        // maak een deck voor een nieuw spel
-        List<Kaart> getrokkenKaartenSpeler = new ArrayList<>();                   // maakt een lijst waar de getrokken kaarten in gaan
 
-
-        System.out.println("De eerste twee kaarten zijn: ");
-        System.out.println(kaartenInSpel.get(0) + ", " + kaartenInSpel.get(1));         // toont de eerste twee kaarten op het scherm
-        getrokkenKaartenSpeler.add(kaartenInSpel.get(0));                                     // voegt de eerste kaart toe aan de getrokken kaarten stapel
-        getrokkenKaartenSpeler.add(kaartenInSpel.get(1));                                     // voegt de tweede kaart toe aan de getrokken kaarten stapel
-        kaartenInSpel.remove(0);                                                  // verwijdert de eerste kaart uit de stapel met speelkaarten
-        kaartenInSpel.remove(1);                                                  // verwijdert de tweede kaart uit de stapel met speelkaarten
-        System.out.println("Totale punten aantal: " + berekeningPunten(getrokkenKaartenSpeler));      // berekening puntenaantal van de eerste twee kaarten
-
-        commandLoop(kaartenInSpel, getrokkenKaartenSpeler);
+        Speler speler1 = new Speler();
+        speler1.speelSpel(kaartenInSpel);
     }
 
 
-    public static void commandLoop(List<Kaart> kaartenInSpel, List<Kaart> getrokkenKaartenSpeler){
-        Boolean quit = false;
-        System.out.println("Kies een kaart [k], pass[p], beëindig deze ronde[s] of quit [q]");
-        do {
-            Scanner commandReader = new Scanner(System.in);                // maak een nieuwe scanner
-            String command = commandReader.nextLine();                     // lees de input uit
-            if (command.equals("q")) {                                     // als q wordt ingevoerd door de speler, stopt het spel
-                quit = true;
-            } else if (command.equals("k")) {
-                System.out.println(kaartenInSpel.get(0));
-                getrokkenKaartenSpeler.add(kaartenInSpel.get(0));
-                kaartenInSpel.remove(0);
-                int totalePunten = berekeningPunten(getrokkenKaartenSpeler);
-                System.out.println("Totale punten aantal: " + totalePunten);
-                int puntenGelijkofMeerDan21 = meerDan21(totalePunten);
-                if(puntenGelijkofMeerDan21 == 1) {
-                    System.out.println("Helaas, je hebt verloren");
-                }else if(puntenGelijkofMeerDan21 == 2) {
-                    //laat bank spelen, als die 21 heeft, wint de bank, anders de speler
-                } else {
-                    continue;
-                }
-            } else if (command.equals("p")) {
-                System.out.println("De getrokken kaarten zijn: " + getrokkenKaartenSpeler);
-                System.out.println("Totale punten aantal: " + berekeningPunten(getrokkenKaartenSpeler));
-                // laat de bank spelen, bij hoger punten aantal bank, wint bank, bij meer dan 21 punten verliest bank
-                Bank.bankSpeelt(kaartenInSpel);
-            } else if(command.equals("s")){
-                System.out.println("Het totale aantal punten is: ");
-            } else {
-                System.out.println("Commando incorrect, probeer opnieuw.");
-            }
-        } while (!quit);
-    }
-
-
-    public static int berekeningPunten(List<Kaart> getrokkenKaartenSpeler){
-        int totaalAantalPunten = 0;                 // aantal punten bij de start van het spel (zijn dus geen kaarten getrokken)
-        for(Kaart kaart:getrokkenKaartenSpeler){
+    public static int berekeningPunten(List<Kaart> getrokkenKaarten){
+        int totaalAantalPunten = 0;                  // aantal punten bij de start van het spel (zijn dus geen kaarten getrokken)
+        for(Kaart kaart:getrokkenKaarten){
             int kaartPunten = kaart.getWaarde();     // kaartwaarde wordt opgezocht
             totaalAantalPunten += kaartPunten;       // kaartwaarde wordt opgeteld bij totaal aantal punten
+
+
+//functie voor checken op aas aanroepen, methode al gemaakt onderaan deze klasse
+
+
+
+//            if(totaalAantalPunten > 21){
+//                if(getrokkenKaarten.contains("AAS")){
+//
+//                    //stel vraag hoeveel aas kaarten je wilt aanpassen naar cijfer 1, en bereken opnieuw, loop opnieuw de vraag wat de volgende zet wordt als kleiner dan 21
+//                }
+//            }
         }
         return totaalAantalPunten;
     }
 
-    public static int meerDan21(int totalePunten){
-        if(totalePunten > 21){
-            return 1;
-        }else if (totalePunten == 21){
-            return 2;
-        } else{
-            return 3;
+
+
+    public static void bepalenWieWint(int puntenSpeler, int puntenBank, Bank bank){
+        System.out.println("Kaarten van de bank: " + bank.getGetrokkenKaarten() + " Totale punten van de bank: " + bank.getTotalePunten());
+        if(puntenSpeler <= 21 && puntenSpeler > bank.getTotalePunten()){
+            System.out.println("Gefeliciteerd, je hebt het spel gewonnen");
+        }else if(bank.getTotalePunten() > 21) {
+            System.out.println("Gefeliciteerd, je hebt het spel gewonnen");
+        } else if (puntenSpeler == bank.getTotalePunten()){
+            System.out.println("Gelijkspel");
+        }else{
+            System.out.println("Helaas, je hebt het spel verloren");
         }
     }
+
+
+
+    public static void checkenOpAasKaarten(){
+
+    }
+
+
+
 
 }

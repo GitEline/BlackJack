@@ -22,6 +22,12 @@ public class Kaart {
 
     @Override
     public String toString() {
-        return kaartKleur.toString() + kaartType.toString();
+        String kaartKleurString = kaartKleur.toString();
+        String kaartTypeString = kaartType.toString();
+        return kaartKleurString.substring(0,1).toUpperCase() +
+                kaartKleurString.substring(1).toLowerCase() +
+                "-" +
+                kaartTypeString.substring(0,1).toUpperCase() +
+                kaartTypeString.substring(1).toLowerCase();
     }
 }
