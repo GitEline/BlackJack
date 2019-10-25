@@ -17,11 +17,10 @@ public class Speler extends Deelnemer {
         System.out.println("Totale punten aantal: " + NieuwSpel.berekeningPunten(getGetrokkenKaarten()));      // berekening puntenaantal van de eerste twee kaarten
 
 
-        System.out.println("Kies een kaart [k], pas[p] of quit [q]");
-        Scanner commandReader = new Scanner(System.in);                // maak een nieuwe scanner
-        String command = commandReader.nextLine();                     // lees de input uit
-
         do {
+            System.out.println("Kies een kaart [k], pas[p] of quit [q]");
+            Scanner commandReader = new Scanner(System.in);                // maak een nieuwe scanner
+            String command = commandReader.nextLine();                     // lees de input uit
             if (command.equals("q")) {                                     // als q wordt ingevoerd door de speler, stopt het spel
                 quit = true;
             } else if (command.equals("k")) {
