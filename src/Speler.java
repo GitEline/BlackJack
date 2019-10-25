@@ -52,5 +52,9 @@ public class Speler extends Deelnemer {
                 System.out.println("Commando incorrect, probeer opnieuw");
             }
         } while (!quit);
+
     }
+
+
+
 }

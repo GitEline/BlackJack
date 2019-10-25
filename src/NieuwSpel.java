@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class NieuwSpel {
-    
+
     public static void zetNieuwSpelOp(){
         // vraag hoeveel spelers en loop door nieuw speler voor elke nieuwe speler
         // vraag met hoeveel decks er gespeeld moet worden en maak meerdere decks aan
