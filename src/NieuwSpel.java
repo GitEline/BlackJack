@@ -42,7 +42,7 @@ public class NieuwSpel {
 //            kaartenInSpel = Deck.maakDeck();
 //        }
 //        System.out.println(kaartenInSpel);
-        //kaart voor bank tonen
+        //TODO kaart voor bank tonen
 
 
         List<Kaart> kaartenInSpel = Deck.maakDeck();                        // maak een deck voor een nieuw spel
